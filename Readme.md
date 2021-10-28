@@ -9,7 +9,7 @@
 
 1.  支持MIUI的安卓10、11、12(暂不支持EROFS)
 2.  自由选择打卡刷包或线刷包(配置文件中设置)
-3.  兼容制作 [Eu](https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/xiaomi.eu/MIUI-WEEKLY-RELEASES/)
+3.  兼容制作 [Eu](https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/xiaomi.eu/MIUI-WEEKLY-RELEASES/) 并带半本地化
 
 #### HaisV3特点
 

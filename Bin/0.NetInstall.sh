@@ -16,7 +16,7 @@ echo "安装 Git 中..."
 ${su} apt-get install -y git
 
 echo "获取 HaisV3 一键快速出包工具中..."
-git clone https://gitee.com/hais/HaisV3 --depth 1
+${su} git clone https://gitee.com/hais/HaisV3 --depth 1
 
 echo "正在根据 HaisV3 安装运行依赖中..."
 ${su} chmod 0777 -R ./HaisV3
