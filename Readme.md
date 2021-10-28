@@ -29,11 +29,9 @@
 
 `Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux`
 
-2、下载 http://u.hais.pw/6xluc 解压后打开debian.exe根据提示创建用户设置密码。
+2、下载 http://u.hais.pw/6xluc 打开 HaisV3.exe 即可开始按照提示做包。
 
-3、设置好密码后关闭 debian.exe 并打开 HaisV3.bat 即可开始按照提示做包。
-
-4、不使用的话在命令行输入 `wslconfig /u Debian` 即可卸载
+Ps:不使用的话在命令行输入 `wslconfig /u Debian` 卸载依赖，然后删除文件夹即可
 
 
 #### 出包：
