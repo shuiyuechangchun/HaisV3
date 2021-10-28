@@ -3,12 +3,13 @@
 
 此工具是Hais为方便修改MIUI系统所制作的一修改工具。
 目前是第三个大版本所以称之为V3。当前仅支持Debian、Ubuntu电脑版。
-使用中遇到问题可前往Q群 927251103 进行讨论。
+使用中遇到问题可前往Q群 [927251103](https://jq.qq.com/?_wv=1027&k=7SaV9nzM) 进行讨论。
 
 #### 兼容和支持
 
 1.  支持MIUI的安卓10、11、12(暂不支持EROFS)
 2.  自由选择打卡刷包或线刷包(配置文件中设置)
+3.  兼容制作 [Eu](https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/xiaomi.eu/MIUI-WEEKLY-RELEASES/)
 
 #### HaisV3特点
 
