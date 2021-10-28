@@ -33,6 +33,8 @@
 
 3、设置好密码后关闭 debian.exe 并打开 HaisV3.bat 即可开始按照提示做包。
 
+4、不使用的话在命令行输入 `wslconfig /u Debian` 即可卸载
+
 
 #### 出包：
 
