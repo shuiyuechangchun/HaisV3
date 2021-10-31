@@ -22,15 +22,19 @@ AliYun="python3 $SHELL_PATH/Lib/aliyunpan/main.py -t ${Ali_TOKEN}"
 cleanCacherNum=0
 cleanCacher(){
 	cleanCacherNum=`expr $cleanCacherNum + 1`
-	if [ "$cleanCacherNum" -eq "5" ] || [ "$cleanCacherNum" -eq "10" ] || [ "$cleanCacherNum" -eq "15" ] || [ "$cleanCacherNum" -eq "20" ] ;then
+	Ali_DEVICE_DIR_NAME=$Ali_ROOT_2_DIR_NAME
+	if [ "$cleanCacherNum" -eq "3" ] || [ "$cleanCacherNum" -eq "6" ] ;then
+		Ali_Device=""
+	elif [ "${SETTING_OPTION}" = "5" ]; then
+		Ali_DEVICE_DIR_NAME=""
 		Ali_Device=""
 	else
 		Ali_Device="/${DeviceName}"
 	fi
 	
-	Result=`curl -H "Content-Type:application/json" -H "Data_Type:msg" -X POST --data '{"path":"root/'${Ali_ROOT_2_DIR_NAME}${Ali_Device}'","password":"'${Ali_Alist_PWD}'","depth":-1}' ${Ali_Alist_URL}`
+	Result=`curl -H "Content-Type:application/json" -H "Data_Type:msg" -X POST --data '{"path":"root/'${Ali_DEVICE_DIR_NAME}${Ali_Device}'","password":"'${Ali_Alist_PWD}'","depth":-1}' ${Ali_Alist_URL}`
 	code=`echo $Result | jq '.code'`
-	if [ "$code" != "200" ] && [ "$cleanCacherNum" -eq "10" ] ;then
+	if [ "$code" != "200" ] && [ "$cleanCacherNum" -eq "7" ] ;then
 		echo "网盘缓存更新失败，60秒后进行第${cleanCacherNum}次重试-->$Result"
 		sleep 60
 		cleanCacher
@@ -55,6 +59,7 @@ updateFiles(){
 		upUpdateFilesAliyunNum=$nowUpdateFilesAliyunNum
 		echo "失败修改后：${upUpdateFilesAliyunNum}---${nowUpdateFilesAliyunNum}"
 		if [ "$updateFilesNum" -ge "10" ] ;then
+			exit
 		else
 			echo "上传失败，60秒后进行第${updateFilesNum}次重试！"
 			sleep 60
