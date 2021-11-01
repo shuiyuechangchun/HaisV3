@@ -37,7 +37,7 @@ PS：此工具为Hais群友福利工具,如非群友可输入Test进行试用.(�
 Ps:不使用的话在命令行输入 `wslconfig /u Debian` 卸载依赖，然后删除文件夹即可
 
 
-#### 出包：
+#### 开始做包
 
 ###### 常规出包
 
@@ -50,13 +50,13 @@ Ps:不使用的话在命令行输入 `wslconfig /u Debian` 卸载依赖，然后
 
 #### 工具内文件说明
 
-1.    工具启动脚本					HaisAuto.sh
+1.0   工具启动脚本					HaisAuto.sh
 
-2.    使用说明						Readme.md
+2.0   使用说明						Readme.md
 
-3.    存放核心						Bin\
+3.0   存放核心						Bin\
 
-3.1 此处存放的全是工具依赖			Bin\Lib
+3.1   此处存放的全是工具依赖			Bin\Lib
 
 3.2   配置文件,一键出包的各种设置	Bin\Config
 
