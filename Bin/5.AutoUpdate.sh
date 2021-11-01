@@ -55,9 +55,7 @@ updateFiles(){
 	
 	nowUpdateFilesAliyunNum=`grep -o 'aliyunpan' $SHELL_PATH/../$ROMID/log.txt |wc -l`
 	if [ "$nowUpdateFilesAliyunNum" -ne "$upUpdateFilesAliyunNum" ];then 
-		echo "失败修改前：${upUpdateFilesAliyunNum}---${nowUpdateFilesAliyunNum}"
 		upUpdateFilesAliyunNum=$nowUpdateFilesAliyunNum
-		echo "失败修改后：${upUpdateFilesAliyunNum}---${nowUpdateFilesAliyunNum}"
 		if [ "$updateFilesNum" -ge "10" ] ;then
 			exit
 		else

@@ -3,20 +3,20 @@
 SHELL=$(readlink -f "$0")			#脚本文件
 SHELL_PATH=$(dirname $SHELL)		#脚本路径
 PackTmpPath="$SHELL_PATH/Output/Temp/PackTools"		#打包缓存目录
-if [[ $(uname -m) != "aarch64" ]]; then su="sudo ";fi;
+if [[ $(uname -m) != "aarch64" ]]; then su="sudo ";branch="master";else su=" ";branch="arm";fi;
 
 echo "即将开始安装 Git 并获取工具包..."
 
 sleep 3
 
 echo "更新Ubuntu可用软件包列表和已安装的软件包 ..."
-${su} apt-get update && apt-get upgrade -y
+#${su} apt-get update && apt-get upgrade -y
 
 echo "安装 Git 中..."
 ${su} apt-get install -y git
 
 echo "获取 HaisV3 一键快速出包工具中..."
-${su} git clone https://gitee.com/hais/HaisV3 --depth 1
+${su} git clone -b ${branch}  https://gitee.com/hais/HaisV3 --depth 1
 
 echo "正在根据 HaisV3 安装运行依赖中..."
 ${su} chmod 0777 -R ./HaisV3
