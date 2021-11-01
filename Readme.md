@@ -51,19 +51,33 @@ Ps:不使用的话在命令行输入 `wslconfig /u Debian` 卸载依赖，然后
 #### 工具内文件说明
 
 1.    工具启动脚本					HaisAuto.sh
+
 2.    使用说明						Readme.md
+
 3.    存放核心						Bin\
+
 3.1 此处存放的全是工具依赖			Bin\Lib
+
 3.2   配置文件,一键出包的各种设置	Bin\Config
+
 3.2.1 设置作者、压缩、包类型等		Bin\Config\BuildConfig.ini
+
 3.2.2 精简列表(群共享有参考) 		Bin\Config\DeleteFileConfig.ini
+
 3.2.3 刷机脚本描述和修改			Bin\Config\FlashScriptConfig.ini
+
 3.2.4 制作EU时需要额外添加的文件	Bin\Config\AddEuReplaceFile
+
 3.2.5 制作ROM需要添加的文件			Bin\Config\AddReplaceFile
+
 3.2.6 制作线刷时添加的				Bin\Config\FlashImageTools
+
 3.2.7 VAB机型制作卡刷需要添加		Bin\Config\InitCopy
+
 3.2.8 往某文件中追加的文字			Bin\Config\MergeFile
+
 3.2.9 插桩修改的配置项				Bin\Config\SmallPatchFile
+
 
 
 #### 版本说明
