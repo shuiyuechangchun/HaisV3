@@ -32,6 +32,6 @@ echo "sudo ./HaisAuto.sh https://hugeota.d.miui.com/V12.0.2.0.QDTCNXM/miui_MI8Li
 echo " "
 echo " "
 
-sleep 3
+sleep 2
 
-cd ./HaisV3
+cd  && cd HaisV3 && sudo ./HaisAuto.sh
