@@ -27,7 +27,9 @@ PS：此工具为Hais群友福利工具,如非群友可输入Test进行试用.(�
 
 `bash <(curl -s https://gitee.com/hais/HaisV3/raw/master/Bin/0.NetInstall.sh)`
 
+
 ###### 在支持 WSL 的 Windows10、11上使用。
+
 1、使用Powershell管理员身份运行下面命令启用WSL后重启电脑。
 
 `Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux`
@@ -37,13 +39,29 @@ PS：此工具为Hais群友福利工具,如非群友可输入Test进行试用.(�
 Ps:不使用的话在命令行输入 `wslconfig /u Debian` 卸载依赖，然后删除文件夹即可
 
 
+###### 在Android手机上使用
+
+1、首先安装 Termux (群共享有下载)
+
+2、执行命令(没错,这就是偷DNA的)
+
+`bash <(curl -s https://gitee.com/meng-shang/proot_linux/raw/master/install_linux.sh) && ubuntu && bash <(curl -s https://gitee.com/hais/HaisV3/raw/master/Bin/0.NetInstall.sh) `
+
+3、以后运行就
+
+`cd HaisV3`
+
+`./HaisAuto.sh`
+
+Ps:我也没用过,我也不知道路径在哪里-.-,懒得看了~
+
 #### 开始做包
 
-###### 常规出包
+###### 普通人的做包操作
 
 根据图形界面操作进行出包.--也就是手动执行命令 `sudo ./HaisAuto.sh` 或打开HaisV3.exe 
 
-###### 方便批量做包的进阶做包
+###### 非人类的批量做包
 
 做好设置后 `sudo ./HaisAuto.sh http://xxx.xxx.xxx./xxx.zip` 即可快速出包。
 
