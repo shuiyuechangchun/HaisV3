@@ -50,6 +50,7 @@ Ps:不使用的话在命令行输入 `wslconfig /u Debian` 卸载依赖，然后
 3、以后运行就
 
 `cd HaisV3`
+
 `./HaisAuto.sh`
 
 Ps:我也没用过,我也不知道路径在哪里-.-,懒得看了~
