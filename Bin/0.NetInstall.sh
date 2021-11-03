@@ -8,7 +8,7 @@ echo "即将开始安装 Git 并获取工具包..."
 
 sleep 3
 
-echo "更新Ubuntu可用软件包列表和已安装的软件包 ..."
+echo "更新可用软件包列表和已安装的软件包 ..."
 #${su} apt-get update && apt-get upgrade -y
 
 echo "安装 Git 中..."
