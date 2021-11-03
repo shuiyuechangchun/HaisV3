@@ -43,7 +43,7 @@ Ps:不使用的话在命令行输入 `wslconfig /u Debian` 卸载依赖，然后
 
 1、首先安装 Termux (群共享有下载)
 
-2、执行命令安装 Dbian (Ubuntu感觉比debian臃肿)
+2、执行命令安装Ubuntu (没错是抄[浮之梦殇](https://gitee.com/meng-shang)的脚本 )
 
 `bash <(curl -s https://gitee.com/hais/HaisV3/raw/master/Bin/0.ArmInstall.sh)`
 
