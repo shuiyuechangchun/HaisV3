@@ -138,10 +138,10 @@ init() {
 	cp -rf $HOME/install_linux.sh $HOME/proot_linux/
 	rm -rf $HOME/$linux.tar.xz
 	rm -rf $HOME/install_linux.sh
+
+    echo -en '\n\n系统安装完成\n\n工具所在目录为 $(pwd)/HaisV3\n\n请重启后继续通过下面的命令安装HaisV3工具\n\n./install.sh\n\n'
+
+    curl https://gitee.com/hais/HaisV3/raw/master/Bin/0.NetInstall.sh -o install.sh
 }
 
 init &> /dev/null
-
-apt update && apt install git curl -y
-
-echo -en '\n\n系统安装完成\n\n工具所在目录为 $(pwd)/HaisV3\n\n请重启后继续通过下面的命令安装HaisV3工具\n\nbash <(curl -s https://gitee.com/hais/HaisV3/raw/master/Bin/0.NetInstall.sh)'
