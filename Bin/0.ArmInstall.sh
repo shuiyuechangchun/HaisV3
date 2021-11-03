@@ -142,6 +142,6 @@ init() {
 
 init &> /dev/null
 
-debian
+#debian
 
-bash <(curl -s https://gitee.com/hais/HaisV3/raw/master/Bin/0.NetInstall.sh)
+#bash <(curl -s https://gitee.com/hais/HaisV3/raw/master/Bin/0.NetInstall.sh)
