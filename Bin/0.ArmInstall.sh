@@ -142,9 +142,10 @@ init() {
 
 init &> /dev/null
 
-apt update && apt install git curl -y
+echo -en '\n\n系统安装完成\n\n工具所在目录为 '$(pwd)'/HaisV3\n\n请重启后继续通过下面的命令安装HaisV3工具\n\n./install.sh\n\n'
 
-bash <(curl -s https://gitee.com/hais/HaisV3/raw/master/Bin/0.NetInstall.sh)
+curl https://gitee.com/hais/HaisV3/raw/master/Bin/0.NetInstall.sh -o "$HOME/$linux/root/install.sh" &> /dev/null
 
-echo -en '\n\n安装完成\n\n工具所在目录为 $(pwd)/HaisV3\n\n请通过  cd HaisV3 && ./HaisAuto.sh 启动制作工具\n\n'
-    
+chmod 0777 "$HOME/$linux/root/install.sh" &> /dev/null
+
+echo 'echo -en "\n\nHaisV3工具安装完成,通过命令启动\n\ncd HaisV3/ && ./HaisAuto.sh\n\n"' >> "$HOME/$linux/root/install.sh"

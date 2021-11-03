@@ -16,7 +16,6 @@ echo "
 
 ${su} apt update
 ${su} apt install -y whiptail
-${su} apt install -y git
 ${su} apt install -y cpio
 ${su} apt install -y bc
 ${su} apt install -y file

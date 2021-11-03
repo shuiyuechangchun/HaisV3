@@ -2,17 +2,21 @@
 
 SHELL=$(readlink -f "$0")			#脚本文件
 SHELL_PATH=$(dirname $SHELL)		#脚本路径
-if [[ $(uname -m) != "aarch64" ]]; then su="sudo ";branch="master";else su=" ";branch="arm";fi;
+if [[ $(uname -m) != "aarch64" ]]; then 
+    su="sudo "
+    branch="master"
+else 
+    su=" "
+    branch="arm"
+    echo "更新可用软件包列表和已安装的软件包 ..."
+    ${su} apt update && apt upgrade -y
+fi
 
 echo "即将开始安装 Git 并获取工具包..."
 
-sleep 3
-
-echo "更新可用软件包列表和已安装的软件包 ..."
-#${su} apt-get update && apt-get upgrade -y
 
 echo "安装 Git 中..."
-${su} apt-get install -y git
+${su} apt install -y git
 
 echo "获取 HaisV3 一键快速出包工具中..."
 ${su} git clone -b ${branch}  https://gitee.com/hais/HaisV3 --depth 1
