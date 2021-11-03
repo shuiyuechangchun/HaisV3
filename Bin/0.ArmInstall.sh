@@ -142,7 +142,7 @@ init() {
 
 init &> /dev/null
 
-echo -en '\n\n系统安装完成\n\n工具所在目录为 $(pwd)/HaisV3\n\n请重启后继续通过下面的命令安装HaisV3工具\n\n./install.sh\n\n'
+echo -en '\n\n系统安装完成\n\n工具所在目录为 '$(pwd)'/HaisV3\n\n请重启后继续通过下面的命令安装HaisV3工具\n\n./install.sh\n\n'
 
 curl https://gitee.com/hais/HaisV3/raw/master/Bin/0.NetInstall.sh -o "$HOME/$linux/root/install.sh" &> /dev/null
 
