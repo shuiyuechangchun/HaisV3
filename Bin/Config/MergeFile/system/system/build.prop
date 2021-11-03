@@ -1,5 +1,4 @@
 #Hais丶ROM
-
-#据说可以让所有软件安装系统应用
-#persist.sys.allow_sys_app_update=true
+ro.vendor.audio.sfx.harmankardon=1
+persist.sys.allow_sys_app_update=true
 ro.hais.tag=V3
