@@ -41,3 +41,4 @@ echo " "
 sleep 3
 
 #cd  && cd HaisV3 && ${su} ./HaisAuto.sh
+
