@@ -21,9 +21,12 @@ esac
 
 if [[ -x "$(command -v pkg)" ]]; then
 	if [[ ! -x  $(command -v proot) ]] || [[ ! -x  $(command -v wget) ]] || [[ ! -x  $(command -v tar) ]]; then
-    echo "更新可用软件包列表和已安装的软件包 ..."
-    apt-get update && apt-get upgrade -y &> /dev/null
-    apt-get install -y git tar proot wget curl unzip &> /dev/null
+		echo "修改软件源并更新可用软件包列表和已安装的软件包 ..."
+		sed -i 's@^\(deb.*stable main\)$@#\1\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list
+		sed -i 's@^\(deb.*games stable\)$@#\1\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/game-packages-24 games stable@' $PREFIX/etc/apt/sources.list.d/game.list
+		sed -i 's@^\(deb.*science stable\)$@#\1\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/science-packages-24 science stable@' $PREFIX/etc/apt/sources.list.d/science.list
+		apt-get update
+		apt-get install -y git tar proot wget curl unzip
 	fi
 fi
 
