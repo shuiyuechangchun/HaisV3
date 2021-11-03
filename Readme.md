@@ -43,9 +43,13 @@ Ps:不使用的话在命令行输入 `wslconfig /u Debian` 卸载依赖，然后
 
 1、首先安装 Termux (群共享有下载)
 
-2、执行命令(没错,这就是偷DNA的)
+2、执行命令安装Ubuntu (没错,这就是偷DNA的)
 
-`bash <(curl -s https://gitee.com/meng-shang/proot_linux/raw/master/install_linux.sh) && ubuntu && bash <(curl -s https://gitee.com/hais/HaisV3/raw/master/Bin/0.NetInstall.sh) `
+`bash <(curl -s https://gitee.com/meng-shang/proot_linux/raw/master/install_linux.sh) `
+
+3、安装HaisV3工具
+
+`bash <(curl -s https://gitee.com/hais/HaisV3/raw/master/Bin/0.NetInstall.sh)`
 
 3、以后运行就
 

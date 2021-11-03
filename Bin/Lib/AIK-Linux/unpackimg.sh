@@ -377,16 +377,19 @@ sed -i 's/\x2C\x76\x65\x72\x69\x66\x79/\x00\x00\x00\x00\x00\x00\x00/g' split_img
 #echo "---pwd:$(pwd)"
 
 su="sudo "
+getConfig() { grep "$1" "../../Config/BuildConfig.ini" | cut -d "=" -f 2; }  #读取配置文件
 for file in `find ramdisk -name fstab* ` ;do
 	echo "处理：$file"
 	${su} sed -i 's/,avb_keys=\/avb\/q-gsi.avbpubkey:\/avb\/r-gsi.avbpubkey:\/avb\/s-gsi.avbpubkey//g' $file
-	${su} sed -i 's/fileencryption=/encryptable=/g' $file
-	${su} sed -i 's/forceencrypt=/encryptable=/' $file
-	${su} sed -i 's/forcefdeorfbe=/encryptable=/' $file
 	${su} sed -i 's/.dmverity=true/.dmverity=false/' $file
 	${su} sed -i 's/,avb=vbmeta_system//g' $file
 	${su} sed -i 's/,avb=vbmeta//g' $file
 	${su} sed -i 's/,avb//g' $file
+	if [ "$(getConfig 'IS_ENCRYPTION')" = 'FALSE' ];then
+		${su} sed -i 's/fileencryption=/encryptable=/g' $file
+		${su} sed -i 's/forceencrypt=/encryptable=/' $file
+		${su} sed -i 's/forcefdeorfbe=/encryptable=/' $file
+	fi
 done
 
 echo " ";
