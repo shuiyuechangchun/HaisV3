@@ -2,16 +2,7 @@
 
 SHELL=$(readlink -f "$0")			#脚本文件
 SHELL_PATH=$(dirname $SHELL)		#脚本路径
-if [[ $(uname -m) != "aarch64" ]]; then 
-    su="sudo "
-    branch="master"
-else 
-    su=" "
-    branch="arm"
-    apt update
-    apt upgrade -y
-
-fi;
+if [[ $(uname -m) != "aarch64" ]]; then su="sudo ";branch="master";else su=" ";branch="arm";fi;
 
 echo "即将开始安装 Git 并获取工具包..."
 
