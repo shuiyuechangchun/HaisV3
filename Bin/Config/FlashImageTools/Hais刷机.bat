@@ -23,8 +23,13 @@ echo.
 
 bin\fastboot %* flash super firmware-update\super.img
 echo.正在重启到Fastbootd(金色或TWRP)
-echo.等待重启完成后继续进行刷入
-echo.如卡金色Fastbootd请进群共享下载驱动精灵按照驱动
+echo.
+echo.重启后手机会进入金色米兔(Fastbootd)或TWRP界面
+echo.
+echo.如卡住不动下载驱动安装 https://hais.lanzouw.com/b07b4pnbc (密码:dr87)
+echo.
+echo.等待重启完成驱动检测通过后继续进行刷入
+echo.
 bin\fastboot %* reboot fastboot
 bin\fastboot %* flash odm_a firmware-update\odm.img
 bin\fastboot %* flash system_a firmware-update\system.img
