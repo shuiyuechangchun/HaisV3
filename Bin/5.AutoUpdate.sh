@@ -58,7 +58,6 @@ if [ "$(getConfig 'Ali_IS_OPEN')" == "TRUE" ] ; then
 	echo $data
 	
 	
-	#curl -H 'Authorization:83a81f29cd29f22e2fb0dfe60be92e55' http://p.hais.pw/api/admin/clear_cache
 	
 	sleep 10
 fi
