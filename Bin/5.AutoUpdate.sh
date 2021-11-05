@@ -14,6 +14,8 @@ Ali_TOKEN=$(getConfig 'Ali_TOKEN')
 Ali_ROOT_DIR_NAME=$(getConfig 'Ali_ROOT_DIR_NAME')
 Ali_ROOT_2_DIR_NAME=$(getConfig 'Ali_ROOT_2_DIR_NAME')
 AliYun="python3 $SHELL_PATH/Lib/aliyunpan/main.py -t ${Ali_TOKEN}"
+POST_ROM_PATH="{\"path\":\"${Ali_ROOT_2_DIR_NAME}/${DeviceName}/${DeviceName}_${RomVersion}/${ROMID}\",\"id\":\"${ROMID}\"}"
+echo $POST_ROM_PATH
 
 updateFilesNum=0
 upUpdateFilesAliyunNum=0
@@ -42,6 +44,20 @@ updateFiles(){
 	fi
 }
 
+cleanCacherNum=0
+cleanCacher(){
+	cleanCacherNum=`expr $cleanCacherNum + 1`
+	
+	if [[ "${RES}" =~ '成功' ]] ;then 
+		echo "网盘缓存更新成功：$Result"
+	else
+		echo "网盘缓存更新失败，60秒后进行第${cleanCacherNum}次重试-->$Result"
+		sleep 60
+		cleanCacher
+	fi
+}
+
+
 #上传到阿里云。。。。。。。。。。。。。
 if [ "$(getConfig 'Ali_IS_OPEN')" == "TRUE" ] ; then 
 	
@@ -53,10 +69,7 @@ if [ "$(getConfig 'Ali_IS_OPEN')" == "TRUE" ] ; then
 	echo "文件正在上传到网盘，请耐心等待！"
 	
 	updateFiles
-	
-	data="{\"path\":\"${Ali_ROOT_2_DIR_NAME}/${DeviceName}/${DeviceName}_${RomVersion}/${ROMID}\",\"id\":\"${ROMID}\"}"
-	echo $data
-	
+
 	
 	
 	sleep 10
