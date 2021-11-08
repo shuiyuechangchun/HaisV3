@@ -39,8 +39,7 @@ if [ "$(getConfig 'Ali_IS_OPEN')" == "TRUE" ] ; then
 	
 	updateFiles
 
-	POST_ROM_PATH="{\"path\":\"${Ali_ROOT_2_DIR_NAME}/${DeviceName}/${DeviceName}_${RomVersion}/${ROMID}\",\"id\":\"${ROMID}\"}"
-	echo $POST_ROM_PATH
+	
 	
 	
 	sleep 10
