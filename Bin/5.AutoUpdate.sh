@@ -13,7 +13,7 @@ DeviceName=${Device^}
 Ali_TOKEN=$(getConfig 'Ali_TOKEN')
 Ali_ROOT_DIR_NAME=$(getConfig 'Ali_ROOT_DIR_NAME')
 Ali_ROOT_2_DIR_NAME=$(getConfig 'Ali_ROOT_2_DIR_NAME')
-AliYun="${su} ${SHELL_PATH}/Bin/Lib/aliyunpan "
+AliYun="${su} ${SHELL_PATH}/Lib/aliyunpan "
 
 $AliYun login -RefreshToken=${Ali_TOKEN}
 
