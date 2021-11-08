@@ -33,4 +33,5 @@ ${su} apt install -y unzip
 ${su} apt install -y img2simg
 ${su} apt install -y dos2unix
 ${su} apt install -y jq
+${su} pip install aliyunpan
 ${su} pip3 install -r $SHELL_PATH/Lib/extract_android_ota_payload/requirements.txt

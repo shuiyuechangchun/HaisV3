@@ -13,17 +13,32 @@ DeviceName=${Device^}
 Ali_TOKEN=$(getConfig 'Ali_TOKEN')
 Ali_ROOT_DIR_NAME=$(getConfig 'Ali_ROOT_DIR_NAME')
 Ali_ROOT_2_DIR_NAME=$(getConfig 'Ali_ROOT_2_DIR_NAME')
-AliYun="${su} ${SHELL_PATH}/Lib/aliyunpan "
+AliYun="${su} aliyunpan -t ${Ali_TOKEN} "
 
-$AliYun login -RefreshToken=${Ali_TOKEN}
+FULL_PATH="$Ali_ROOT_DIR_NAME/$Ali_ROOT_2_DIR_NAME/${DeviceName}/${DeviceName}_${RomVersion}"
 
-
+updateFilesNum=0
+upUpdateFilesAliyunNum=0
 updateFiles(){
+	updateFilesNum=`expr $updateFilesNum + 1`
 	
-	$AliYun rm "$Ali_ROOT_DIR_NAME/$Ali_ROOT_2_DIR_NAME/${DeviceName}/${DeviceName}_${RomVersion}/$ROMID"
-	$AliYun mkdir "$Ali_ROOT_DIR_NAME/$Ali_ROOT_2_DIR_NAME/${DeviceName}/${DeviceName}_${RomVersion}"
-	$AliYun upload "$SHELL_PATH/../$ROMID/" "$Ali_ROOT_DIR_NAME/$Ali_ROOT_2_DIR_NAME/${DeviceName}/${DeviceName}_${RomVersion}"
+	$AliYun rm "${FULL_PATH}/$ROMID"
+	$AliYun m "${FULL_PATH}"
 	
+	nowUpdateFilesAliyunNum=`grep -o 'aliyunpan' $SHELL_PATH/../$ROMID/log.txt |wc -l`
+	$AliYun u "$SHELL_PATH/../$ROMID/" "${FULL_PATH}"
+	
+	nowUpdateFilesAliyunNum=`grep -o 'aliyunpan' $SHELL_PATH/../$ROMID/log.txt |wc -l`
+	if [ "$nowUpdateFilesAliyunNum" -ne "$upUpdateFilesAliyunNum" ];then 
+		upUpdateFilesAliyunNum=$nowUpdateFilesAliyunNum
+		if [ "$updateFilesNum" -ge "5" ] ;then
+			exit
+		else
+			echo "上传失败，60秒后进行第${updateFilesNum}次重试！"
+			sleep 60
+			updateFiles
+		fi
+	fi
 }
 
 
@@ -38,9 +53,11 @@ if [ "$(getConfig 'Ali_IS_OPEN')" == "TRUE" ] ; then
 	echo "文件正在上传到网盘，请耐心等待！"
 	
 	updateFiles
-
+	
+	SHARE_URL=`${AliYun}  share -S "${FULL_PATH}/${ROMID}"`
+	POST_DATA="{\"path\":\"${Ali_ROOT_2_DIR_NAME}/${DeviceName}/${DeviceName}_${RomVersion}/${ROMID}\",\"id\":\"${ROMID}\",\"share\":\"${SHARE_URL}\"}"
+	echo $POST_DATA
 	
 	
-	
-	sleep 10
+	sleep 5
 fi
