@@ -26,7 +26,7 @@ updateFiles(){
 	$AliYun m "${FULL_PATH}"
 	
 	nowUpdateFilesAliyunNum=`grep -o 'aliyunpan' $SHELL_PATH/../$ROMID/log.txt |wc -l`
-	$AliYun u "$SHELL_PATH/../$ROMID/" "${FULL_PATH}"
+	$AliYun --filter-file log.txt u "$SHELL_PATH/../$ROMID/" "${FULL_PATH}"
 	
 	nowUpdateFilesAliyunNum=`grep -o 'aliyunpan' $SHELL_PATH/../$ROMID/log.txt |wc -l`
 	if [ "$nowUpdateFilesAliyunNum" -ne "$upUpdateFilesAliyunNum" ];then 
@@ -48,6 +48,7 @@ if [ "$(getConfig 'Ali_IS_OPEN')" == "TRUE" ] ; then
 	${su} rm -rf $SHELL_PATH/../$ROMID/Backups
 	${su} rm -rf $SHELL_PATH/../$ROMID/build.prop
 	cp $SHELL_PATH/../Readme.md $SHELL_PATH/../$ROMID/Readme.md
+	${su} $SHELL_PATH/../log.txt $SHELL_PATH/../$ROMID/做包日记.txt
 	
 	
 	echo "文件正在上传到网盘，请耐心等待！"
