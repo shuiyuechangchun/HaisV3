@@ -13,48 +13,17 @@ DeviceName=${Device^}
 Ali_TOKEN=$(getConfig 'Ali_TOKEN')
 Ali_ROOT_DIR_NAME=$(getConfig 'Ali_ROOT_DIR_NAME')
 Ali_ROOT_2_DIR_NAME=$(getConfig 'Ali_ROOT_2_DIR_NAME')
-AliYun="python3 $SHELL_PATH/Lib/aliyunpan/main.py -t ${Ali_TOKEN}"
-POST_ROM_PATH="{\"path\":\"${Ali_ROOT_2_DIR_NAME}/${DeviceName}/${DeviceName}_${RomVersion}/${ROMID}\",\"id\":\"${ROMID}\"}"
-echo $POST_ROM_PATH
+AliYun="${su} ./Bin/Lib/aliyunpan "
 
-updateFilesNum=0
-upUpdateFilesAliyunNum=0
+$AliYun login -RefreshToken=${Ali_TOKEN}
+
+
 updateFiles(){
-	updateFilesNum=`expr $updateFilesNum + 1`
 	
-	$AliYun m "$Ali_ROOT_DIR_NAME"
-	$AliYun m "$Ali_ROOT_DIR_NAME/$Ali_ROOT_2_DIR_NAME"
-	$AliYun m "$Ali_ROOT_DIR_NAME/$Ali_ROOT_2_DIR_NAME/${DeviceName}"
 	$AliYun rm "$Ali_ROOT_DIR_NAME/$Ali_ROOT_2_DIR_NAME/${DeviceName}/${DeviceName}_${RomVersion}/$ROMID"
-	$AliYun m "$Ali_ROOT_DIR_NAME/$Ali_ROOT_2_DIR_NAME/${DeviceName}/${DeviceName}_${RomVersion}"
+	$AliYun mkdir "$Ali_ROOT_DIR_NAME/$Ali_ROOT_2_DIR_NAME/${DeviceName}/${DeviceName}_${RomVersion}"
+	$AliYun upload "$SHELL_PATH/../$ROMID/" "$Ali_ROOT_DIR_NAME/$Ali_ROOT_2_DIR_NAME/${DeviceName}/${DeviceName}_${RomVersion}"
 	
-	nowUpdateFilesAliyunNum=`grep -o 'aliyunpan' $SHELL_PATH/../$ROMID/log.txt |wc -l`
-	$AliYun u "$SHELL_PATH/../$ROMID/" "$Ali_ROOT_DIR_NAME/$Ali_ROOT_2_DIR_NAME/${DeviceName}/${DeviceName}_${RomVersion}"
-	
-	nowUpdateFilesAliyunNum=`grep -o 'aliyunpan' $SHELL_PATH/../$ROMID/log.txt |wc -l`
-	if [ "$nowUpdateFilesAliyunNum" -ne "$upUpdateFilesAliyunNum" ];then 
-		upUpdateFilesAliyunNum=$nowUpdateFilesAliyunNum
-		if [ "$updateFilesNum" -ge "5" ] ;then
-			exit
-		else
-			echo "上传失败，60秒后进行第${updateFilesNum}次重试！"
-			sleep 60
-			updateFiles
-		fi
-	fi
-}
-
-cleanCacherNum=0
-cleanCacher(){
-	cleanCacherNum=`expr $cleanCacherNum + 1`
-	
-	if [[ "${RES}" =~ '成功' ]] ;then 
-		echo "网盘缓存更新成功：$Result"
-	else
-		echo "网盘缓存更新失败，60秒后进行第${cleanCacherNum}次重试-->$Result"
-		sleep 60
-		cleanCacher
-	fi
 }
 
 
@@ -70,6 +39,8 @@ if [ "$(getConfig 'Ali_IS_OPEN')" == "TRUE" ] ; then
 	
 	updateFiles
 
+	POST_ROM_PATH="{\"path\":\"${Ali_ROOT_2_DIR_NAME}/${DeviceName}/${DeviceName}_${RomVersion}/${ROMID}\",\"id\":\"${ROMID}\"}"
+	echo $POST_ROM_PATH
 	
 	
 	sleep 10
