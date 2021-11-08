@@ -1,0 +1,19 @@
+{
+ "configVer": "1.0",
+ "activeUID": "",
+ "userList": null,
+ "cacheSize": 0,
+ "maxDownloadParallel": 0,
+ "maxUploadParallel": 0,
+ "maxDownloadLoad": 0,
+ "maxDownloadRate": 0,
+ "maxUploadRate": 0,
+ "saveDir": "/root/Downloads",
+ "proxy": "",
+ "localAddrs": "",
+ "updateCheckInfo": {
+  "preferUpdateSrv": "",
+  "latestVer": "v0.0.5",
+  "checkTime": 1636381637
+ }
+}
