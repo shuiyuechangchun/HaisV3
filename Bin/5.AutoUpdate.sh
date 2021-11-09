@@ -48,7 +48,7 @@ if [ "$(getConfig 'Ali_IS_OPEN')" == "TRUE" ] ; then
 	${su} rm -rf $SHELL_PATH/../$ROMID/Backups
 	${su} rm -rf $SHELL_PATH/../$ROMID/build.prop
 	cp $SHELL_PATH/../Readme.md $SHELL_PATH/../$ROMID/Readme.md
-	${su} $SHELL_PATH/../log.txt $SHELL_PATH/../$ROMID/做包日记.txt
+	${su} cp $SHELL_PATH/../log.txt $SHELL_PATH/../$ROMID/做包日记.txt
 	
 	
 	echo "文件正在上传到网盘，请耐心等待！"
