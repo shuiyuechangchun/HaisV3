@@ -26,7 +26,7 @@ updateFiles(){
 	$AliYun m "${FULL_PATH}"
 	
 	nowUpdateFilesAliyunNum=`grep -o 'aliyunpan' $SHELL_PATH/../$ROMID/log.txt |wc -l`
-	$AliYun --filter-file log.txt u "$SHELL_PATH/../$ROMID/" "${FULL_PATH}"
+	$AliYun --filter-file 'log.txt' u "$SHELL_PATH/../$ROMID/" "${FULL_PATH}"
 	
 	nowUpdateFilesAliyunNum=`grep -o 'aliyunpan' $SHELL_PATH/../$ROMID/log.txt |wc -l`
 	if [ "$nowUpdateFilesAliyunNum" -ne "$upUpdateFilesAliyunNum" ];then 
