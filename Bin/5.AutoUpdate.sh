@@ -58,7 +58,9 @@ if [ "$(getConfig 'Ali_IS_OPEN')" == "TRUE" ] ; then
 	SHARE_URL=`${AliYun}  share -S "${FULL_PATH}/${ROMID}"`
 	POST_DATA="{\"path\":\"${Ali_ROOT_2_DIR_NAME}/${DeviceName}/${DeviceName}_${RomVersion}/${ROMID}\",\"id\":\"${ROMID}\",\"share\":\"${SHARE_URL}\"}"
 	echo $POST_DATA
+	curl -H 'Content-Type:application/json' -H 'Data_Type:msg' -X POST --data ${POST_DATA}  http://d.hais.pw/api/diy/updateInfo
 	
+	curl -H 'Authorization:83a81f29cd29f22e2fb0dfe60be92e55' http://p.hais.pw/api/admin/clear_cache
 	
 	sleep 5
 fi
