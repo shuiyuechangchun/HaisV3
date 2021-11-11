@@ -55,7 +55,7 @@ if [ "$(getConfig 'Ali_IS_OPEN')" == "TRUE" ] ; then
 	
 	updateFiles
 	
-	SHARE_URL=`${AliYun}  share -S "${FULL_PATH}/${ROMID}"`
+	SHARE_URL='' #`${AliYun}  share -S "${FULL_PATH}/${ROMID}"`
 	POST_DATA="{\"path\":\"${Ali_ROOT_2_DIR_NAME}/${DeviceName}/${DeviceName}_${RomVersion}/${ROMID}\",\"id\":\"${ROMID}\",\"share\":\"${SHARE_URL}\"}"
 	echo $POST_DATA
 	curl -H 'Content-Type:application/json' -H 'Data_Type:msg' -X POST --data ${POST_DATA}  http://d.hais.pw/api/diy/updateInfo
