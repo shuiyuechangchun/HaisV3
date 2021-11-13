@@ -386,7 +386,7 @@ for file in `find ramdisk -name fstab* ` ;do
 	${su} sed -i 's/,avb=vbmeta_system//g' $file
 	${su} sed -i 's/,avb=vbmeta//g' $file
 	${su} sed -i 's/,avb//g' $file
-	if [ "$(getConfig 'IS_ENCRYPTION')" = 'FALSE' ];then
+	if [ "$(getConfig 'IS_ENCRYPTION')" = 'TRUE' ];then
 		${su} sed -i 's/fileencryption=/encryptable=/g' $file
 		${su} sed -i 's/forceencrypt=/encryptable=/' $file
 		${su} sed -i 's/forcefdeorfbe=/encryptable=/' $file
