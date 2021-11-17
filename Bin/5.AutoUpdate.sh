@@ -13,23 +13,20 @@ DeviceName=${Device^}
 Ali_TOKEN=$(getConfig 'Ali_TOKEN')
 Ali_ROOT_DIR_NAME=$(getConfig 'Ali_ROOT_DIR_NAME')
 Ali_ROOT_2_DIR_NAME=$(getConfig 'Ali_ROOT_2_DIR_NAME')
-AliYun="python3 $SHELL_PATH/Lib/aliyunpan/main.py -t ${Ali_TOKEN}"
-POST_ROM_PATH="{\"path\":\"${Ali_ROOT_2_DIR_NAME}/${DeviceName}/${DeviceName}_${RomVersion}/${ROMID}\",\"id\":\"${ROMID}\"}"
-echo $POST_ROM_PATH
+AliYun="${su} aliyunpan -t ${Ali_TOKEN} "
+
+FULL_PATH="$Ali_ROOT_DIR_NAME/$Ali_ROOT_2_DIR_NAME/${DeviceName}/${DeviceName}_${RomVersion}"
 
 updateFilesNum=0
 upUpdateFilesAliyunNum=0
 updateFiles(){
 	updateFilesNum=`expr $updateFilesNum + 1`
 	
-	$AliYun m "$Ali_ROOT_DIR_NAME"
-	$AliYun m "$Ali_ROOT_DIR_NAME/$Ali_ROOT_2_DIR_NAME"
-	$AliYun m "$Ali_ROOT_DIR_NAME/$Ali_ROOT_2_DIR_NAME/${DeviceName}"
-	$AliYun rm "$Ali_ROOT_DIR_NAME/$Ali_ROOT_2_DIR_NAME/${DeviceName}/${DeviceName}_${RomVersion}/$ROMID"
-	$AliYun m "$Ali_ROOT_DIR_NAME/$Ali_ROOT_2_DIR_NAME/${DeviceName}/${DeviceName}_${RomVersion}"
+	$AliYun rm "${FULL_PATH}/$ROMID"
+	$AliYun m "${FULL_PATH}"
 	
 	nowUpdateFilesAliyunNum=`grep -o 'aliyunpan' $SHELL_PATH/../$ROMID/log.txt |wc -l`
-	$AliYun u "$SHELL_PATH/../$ROMID/" "$Ali_ROOT_DIR_NAME/$Ali_ROOT_2_DIR_NAME/${DeviceName}/${DeviceName}_${RomVersion}"
+	$AliYun --filter-file 'log.txt' u "$SHELL_PATH/../$ROMID/" "${FULL_PATH}"
 	
 	nowUpdateFilesAliyunNum=`grep -o 'aliyunpan' $SHELL_PATH/../$ROMID/log.txt |wc -l`
 	if [ "$nowUpdateFilesAliyunNum" -ne "$upUpdateFilesAliyunNum" ];then 
@@ -44,33 +41,23 @@ updateFiles(){
 	fi
 }
 
-cleanCacherNum=0
-cleanCacher(){
-	cleanCacherNum=`expr $cleanCacherNum + 1`
-	
-	if [[ "${RES}" =~ '成功' ]] ;then 
-		echo "网盘缓存更新成功：$Result"
-	else
-		echo "网盘缓存更新失败，60秒后进行第${cleanCacherNum}次重试-->$Result"
-		sleep 60
-		cleanCacher
-	fi
-}
-
 
 #上传到阿里云。。。。。。。。。。。。。
 if [ "$(getConfig 'Ali_IS_OPEN')" == "TRUE" ] ; then 
 	
 	${su} rm -rf $SHELL_PATH/../$ROMID/Backups
 	${su} rm -rf $SHELL_PATH/../$ROMID/build.prop
-	cp $SHELL_PATH/../Readme.md $SHELL_PATH/../$ROMID/Readme.md
+	cp $SHELL_PATH/../Readme.md $SHELL_PATH/../$ROMID/包的说明.txt
+	${su} cp $SHELL_PATH/../$ROMID/log.txt $SHELL_PATH/../$ROMID/做包日记.txt
 	
 	
 	echo "文件正在上传到网盘，请耐心等待！"
-	
 	updateFiles
-
+	
+	SHARE_URL='' #`${AliYun}  share -S "${FULL_PATH}/${ROMID}"`
+	POST_DATA="{\"path\":\"${Ali_ROOT_2_DIR_NAME}/${DeviceName}/${DeviceName}_${RomVersion}/${ROMID}\",\"id\":\"${ROMID}\",\"share\":\"${SHARE_URL}\"}"
+	echo $POST_DATA
 	
 	
-	sleep 10
+	sleep 5
 fi

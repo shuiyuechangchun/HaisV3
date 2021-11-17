@@ -9,9 +9,6 @@ if [[ $(uname -m) != "aarch64" ]]; then su="sudo ";fi;
 ${su} rm -rf ${1}/system/system/framework/oat/arm64/services.art
 ${su} rm -rf ${1}/system/system/framework/oat/arm64/services.odex
 ${su} rm -rf ${1}/system/system/framework/oat/arm64/services.vdex
-${su} rm -rf ${1}/system/system/framework/oat/arm64/miui-services.art
-${su} rm -rf ${1}/system/system/framework/oat/arm64/miui-services.odex
-${su} rm -rf ${1}/system/system/framework/oat/arm64/miui-services.vdex
 
 #${su} rm -rf ${1}/system/system/priv-app/MIUISecurityCenter/oat
 
