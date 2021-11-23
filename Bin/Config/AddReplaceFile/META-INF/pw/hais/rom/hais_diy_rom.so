@@ -96,7 +96,7 @@ for file in $AdCreateFiles ; do
 		$BY rm -rf $file
 		$BY mkdir -p $(dirname "$file")
 		$BY touch $file
-		$BY chmod 000 $file
+		#$BY chmod 000 $file
 	else
 		ui_print $file
 	fi
@@ -200,7 +200,7 @@ ui_print "- 清理 日志"
 $BY rm -rf /data/vendor/wlan_logs
 $BY mkdir -p /data/vendor
 $BY touch /data/vendor/wlan_logs
-$BY chmod 000 /data/vendor/wlan_logs
+#$BY chmod 000 /data/vendor/wlan_logs
 #补充清理日记
 find /data/media/0/ -name '.td-3' -type f -print -exec rm -rf {} \;
 find /data/media/0/ -name '.tdck' -type f -print -exec rm -rf {} \;
@@ -224,23 +224,23 @@ $BY touch /data/media/0/tad
 $BY touch /data/media/0/GX_Download
 $BY touch /data/media/0/miad
 $BY touch /data/media/0/umeng_cache
-$BY chattr +i /data/media/0/tad
-$BY chattr +i /data/media/0/GX_Download
-$BY chattr +i /data/media/0/miad
-$BY chattr +i /data/media/0/umeng_cache
-$BY chattr +i /data/media/0/sina/weibo/imageMapper_cache
+#$BY chattr +i /data/media/0/tad
+#$BY chattr +i /data/media/0/GX_Download
+#$BY chattr +i /data/media/0/miad
+#$BY chattr +i /data/media/0/umeng_cache
+#$BY chattr +i /data/media/0/sina/weibo/imageMapper_cache
 
 ui_print "- 禁止mi-rcs写入日志"
 $BY rm -rf /data/media/0/JuphoonService
 $BY touch /data/media/0/JuphoonService
-$BY chmod 000 /data/media/0/JuphoonService
+#$BY chmod 000 /data/media/0/JuphoonService
 
 ui_print "- 禁止桌面和面具写入日记"
 $BY rm -rf /cache/magisk.log
 $BY touch   /cache/magisk.log
-$BY chmod 000  /cache/magisk.log
-$BY chattr +i  /cache/magisk.log
+#$BY chmod 000  /cache/magisk.log
+#$BY chattr +i  /cache/magisk.log
 $BY mkdir -p /data/user_de/0/com.miui.home/cache
 $BY rm -rf /data/user_de/0/com.miui.home/cache/debug_log
 $BY touch   /data/user_de/0/com.miui.home/cache/debug_log
-$BY chmod 000  /data/user_de/0/com.miui.home/cache/debug_log 
+#$BY chmod 000  /data/user_de/0/com.miui.home/cache/debug_log 
