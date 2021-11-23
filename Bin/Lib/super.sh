@@ -50,5 +50,5 @@ generateCMD 'odm'
 
 DO_MAKE="$SHELL_PATH/lpmake --metadata-size 65536  --super-name super --metadata-slots 2 --device super:$SUPER_SIZE --group main:$SUPER_SIZE ${DO_MAKE} ${DO_MAKE_B}"
 $DO_MAKE -F $IS_SPARSE --output $PROJECT/super.img 
-echo "$DO_MAKE -F $IS_SPARSE --output $PROJECT/super.img "
+#echo "$DO_MAKE -F $IS_SPARSE --output $PROJECT/super.img "
 $RM_FILES
